@@ -1,0 +1,20 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: service-oss
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.81.128:8848
+
+aliyun:
+  oss:
+    file:
+      endpoint: oss-cn-beijing.aliyuncs.com
+      keyid: LTAI5t7DyS1CPx6Ts5gPtk68
+      keysecret: Y21LEaK8oUlxPi58r56GqC3bz3hQKm
+      bucketname: edu-captain
+

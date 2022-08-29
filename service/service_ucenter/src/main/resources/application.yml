@@ -1,0 +1,47 @@
+server:
+  port: 8160
+
+spring:
+  application:
+    name: service-ucenter
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.81.128:8848
+
+  #mysql数据库连接
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+  #redis数据库连接
+  redis:
+    host: 192.168.81.128
+    port: 6379
+    database: 0
+    timeout: 1800000
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: -1
+        max-idle: 5
+        min-idle: 0
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+mybatis-plus:
+  type-aliases-package: com.atguigu.ucenterservice.entity
+  mapper-locations: classpath:com/atguigu/ucenterservice/mapper/xml/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+wx:
+  open:
+    # 微信开放平台 appid
+    app_id: wxed9954c01bb89b47
+    # 微信开放平台 appsecret
+    app_secret: a7482517235173ddb4083788de60b90e
+    # 微信开放平台 重定向url
+    redirect_url: http://localhost:8160/api/ucenter/wx/callback

@@ -1,0 +1,58 @@
+server:
+  #服务端口
+  port: 8222
+
+spring:
+  application:
+    #服务名
+    name: serviec-gateway
+  cloud:
+    nacos:
+      discovery:
+        #nacos注册中心地址
+        server-addr: 192.168.81.128:8848
+    gateway:
+      discovery:
+        locator:
+          #使用服务发现路由
+          enabled: true
+      #路由匹配规则
+      routes:
+        - id: service-acl
+          uri: lb://service-acl
+          predicates: Path=/*/acl/**
+
+        - id: service-edu
+          uri: lb://service-edu
+          predicates: Path=/eduservice/**
+
+        - id: service-mam
+          uri: lb://service-mam
+          predicates: Path=/edumsm/**
+
+        - id: service-cms
+          uri: lb://service-cms
+          predicates: Path=/educms/**
+
+        - id: service-order
+          uri: lb://service-order
+          predicates: Path=/eduorder/**
+
+        - id: service-oss
+          uri: lb://service-oss
+          predicates: Path=/eduoss/**
+
+        - id: service-statistics
+          uri: lb://service-statistics
+          predicates: Path=/statisticsservice/**
+
+        - id: service-ucenter
+          uri: lb://service-ucenter
+          predicates:
+            - Path=/eduucenter/**
+            #- Path=/api/**
+
+
+        - id: service-vod
+          uri: lb://service-vod
+          predicates: Path=/eduvod/**
