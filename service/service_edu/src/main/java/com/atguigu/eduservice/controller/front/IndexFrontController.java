@@ -27,13 +27,11 @@ public class IndexFrontController {
     //查询前8条热门课程和4个牛逼老师
     @GetMapping("/index")
     public R index(){
-        QueryWrapper<EduCourse> eduCourseQueryWrapper = new QueryWrapper<>();
-        eduCourseQueryWrapper.orderByDesc("view_count").last("limit 4");
-        List<EduCourse> courseList = courseService.list(eduCourseQueryWrapper);
 
-        QueryWrapper<EduTeacher> eduTeacherQueryWrapper = new QueryWrapper<>();
-        eduTeacherQueryWrapper.orderByDesc("level").last("limit 4");
-        List<EduTeacher> teacherList = teacherService.list(eduTeacherQueryWrapper);
+        List<EduCourse> courseList = courseService.PopularCourses();
+
+
+        List<EduTeacher> teacherList = teacherService.PopularTeacher();
         return R.ok().data("courseList", courseList).data("teacherList", teacherList);
     }
 }

@@ -180,4 +180,13 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         return baseMapper.getBaseCourseInfo(courseId);
 
     }
+
+    //根据观看数量获取播放量前四的热门课程
+    @Override
+    public List<EduCourse> PopularCourses() {
+        QueryWrapper<EduCourse> eduCourseQueryWrapper = new QueryWrapper<>();
+        eduCourseQueryWrapper.orderByDesc("view_count").last("limit 4");
+        List<EduCourse> courseList = baseMapper.selectList(eduCourseQueryWrapper);
+        return courseList;
+    }
 }

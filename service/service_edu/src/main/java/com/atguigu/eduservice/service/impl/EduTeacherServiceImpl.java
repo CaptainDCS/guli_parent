@@ -53,6 +53,13 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
         return map;
     }
 
-    //前端讲师页面讲师详情
+    //根据职称获取排名前四的最牛逼老师
+    @Override
+    public List<EduTeacher> PopularTeacher() {
+        QueryWrapper<EduTeacher> eduTeacherQueryWrapper = new QueryWrapper<>();
+        eduTeacherQueryWrapper.orderByDesc("level").last("limit 4");
+        List<EduTeacher> teacherList = baseMapper.selectList(eduTeacherQueryWrapper);
+        return teacherList;
+    }
 
 }
