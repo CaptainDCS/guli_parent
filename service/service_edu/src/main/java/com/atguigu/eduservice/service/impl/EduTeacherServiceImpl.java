@@ -6,6 +6,7 @@ import com.atguigu.eduservice.service.EduTeacherService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -54,6 +55,7 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
     }
 
     //根据职称获取排名前四的最牛逼老师
+    @Cacheable(key = "'selectPopularTeacherList'", value = "teachers")
     @Override
     public List<EduTeacher> PopularTeacher() {
         QueryWrapper<EduTeacher> eduTeacherQueryWrapper = new QueryWrapper<>();

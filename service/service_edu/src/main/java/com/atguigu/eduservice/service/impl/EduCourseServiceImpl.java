@@ -16,6 +16,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -182,6 +183,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     }
 
     //根据观看数量获取播放量前四的热门课程
+    @Cacheable(key = "'selectPopularCourseList'", value = "courses")
     @Override
     public List<EduCourse> PopularCourses() {
         QueryWrapper<EduCourse> eduCourseQueryWrapper = new QueryWrapper<>();
