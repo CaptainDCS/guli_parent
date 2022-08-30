@@ -101,7 +101,7 @@ public class WxApiController {
                 +"&state=%s"
                 +"#wechat_redirect";
         //对redirect_url进行编码
-        String redirect_url = ConstantPropertiesUtil.WX_APP_ID;
+        String redirect_url = ConstantPropertiesUtil.WX_REDIRECT_URL;
         try {
             redirect_url = URLEncoder.encode(redirect_url, "utf-8");
         } catch (UnsupportedEncodingException e) {
@@ -110,8 +110,8 @@ public class WxApiController {
         //设置 %s 占位符的参数，上面有3处
         String url = String.format(
                 baseUrl,
+                ConstantPropertiesUtil.WX_APP_ID,
                 redirect_url,
-                ConstantPropertiesUtil.WX_REDIRECT_URL,
                 "atguigu"
         );
 
