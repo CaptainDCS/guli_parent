@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.81.128:8848
+        namespace: f4e7c2f7-f295-4431-9f25-6132d737813e
+        group: DEFAULT_GROUP
+        file-extension: yaml
+  application:
+    name: service-statistics
